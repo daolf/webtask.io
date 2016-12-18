@@ -10,8 +10,8 @@ var getMeteoReport = (location) => {
       throw new Error('Bad response from server');
     }
     return response.json();
-  }).then((json) => "Weather will be " + json.weather[0].description +
-                    " in " + location);
+  }).then((json) => 'Weather will be ' + json.weather[0].description +
+                    ' in ' + location);
 };
 
 var sendMail = (report, mail) => {
@@ -28,10 +28,11 @@ var sendMail = (report, mail) => {
   transporter.sendMail(mailOptions);
 };
 
-module.exports = function (context, cb) {
+module.exports = (context, cb) => {
   var city = context.data.city;
   var mail = context.data.mail;
   getMeteoReport(city).then(function (weather) {
     sendMail(weather, mail);
+    cb(null, 'Mail sent');
   });
 };
