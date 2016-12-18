@@ -1,3 +1,3 @@
 module.exports = function (context, cb) {
-  cb(null, context.city);
+  cb(null, context.data.city);
 };
