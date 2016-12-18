@@ -1,3 +1,3 @@
 module.exports = function (context, cb) {
-  cb(null, 'Hello');
+  cb(null, context.city);
 };
